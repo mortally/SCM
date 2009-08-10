@@ -1,5 +1,5 @@
 set :application, "computer-poker-analysis"
-set :repository,  "ssh://deepmaize@aifa.eecs.umich.edu:/Users/deepmaize/repos/computer-poker-analysis.git"
+set :repository,  "ssh://deepmaize@aifa.eecs.umich.edu/Users/deepmaize/repos/computer-poker-analysis.git"
 set :domain, "aifa.eecs.umich.edu"
 
 set :deploy_to, "/home/deepmaize/deploy"
@@ -20,6 +20,7 @@ role :db, domain, :primary => true
 # moves over server config files
 task :update_config, :roles => [:app] do
   run "cp -Rf #{shared_path}/config/* #{release_path}/config/"
+  run "echo $PATH"
 end
 after 'deploy:update_code', :update_config
 
