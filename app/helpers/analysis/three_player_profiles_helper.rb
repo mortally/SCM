@@ -1,0 +1,2 @@
+module Analysis::ThreePlayerProfilesHelper
+end

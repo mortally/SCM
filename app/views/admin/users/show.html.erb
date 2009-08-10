@@ -1,0 +1,24 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Admin Home', admin_root_path %> > <%= link_to 'Users', admin_users_path %> > Show User
+  </div>
+</div>
+
+<h3>User Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Login: </th>
+    <td><%=h @user.login %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Email: </th>
+    <td><%=h @user.email %></td>
+  </tr>
+</table>
+
+<h3>Actions</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>"><td><%= link_to 'Edit user', edit_admin_user_path(@user) %></td></tr>
+  <tr class="<%= cycle('','altrow') %>"><td><%= link_to 'Change Password', admin_user_password_path(@user) %></td></tr>
+  <tr class="<%= cycle('','altrow') %>"><td><%= link_to 'Edit roles', admin_user_roles_path(@user) %></td></tr>
+</table>

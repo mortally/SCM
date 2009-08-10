@@ -1,0 +1,2 @@
+module Analysis::AccountsHelper
+end

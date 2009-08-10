@@ -1,0 +1,2 @@
+module Analysis::SimulationsHelper
+end

@@ -1,0 +1,7 @@
+<tr class="<%= cycle('','altrow') %>">
+  <td><%= link_to user.login, [:admin, user] %></td>
+  <td><%= link_to user.email, [:admin, user] %></td>
+  <td><%= link_to 'edit', admin_user_roles_path(user) %></td>
+  <td><%= link_to 'change', admin_user_password_path(user) %></td>
+  <td><%= link_to 'Destroy', [:admin, user], :confirm => 'Are you sure?', :method => :delete %></td>
+</tr>

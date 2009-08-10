@@ -1,0 +1,21 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Admin Home', admin_root_path %> > <%= link_to 'Users', admin_users_path %> > <%= link_to h(@user.login), admin_user_path(@user) %> > Roles
+  </div>
+</div>
+
+<h3>Roles for <%=h @user.login %></h3>
+
+<% form_for @user, :url => admin_user_roles_path(@user), :html => {:method=>:create} do |f| -%>
+ 
+<table width="90%">
+  <tr><th>Has Role?</th><th>Name</th></tr>
+  <% for role in @roles %>
+    <tr><td><%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %></td><td><%= role.name %></td></tr>
+  <% end %>
+</table> 
+ 
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>

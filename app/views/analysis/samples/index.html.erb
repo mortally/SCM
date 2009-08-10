@@ -1,0 +1,23 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to 'Simulations', analysis_simulations_path %> > <%= link_to 'Simulation', [:analysis, @simulation] %> > Samples
+  </div>
+</div>
+
+<h3>Samples</h3>
+
+<table width="90%">
+<tr>
+  <th></th><th>File</th>
+</tr>
+
+<% @samples.each do |sample| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to "Sample", [:analysis, @simulation, sample] %></td>
+    <td><%= link_to "Download file", sample.public_filename %></td>
+    <td><%= link_to 'Destroy', [:analysis, @simulation, sample], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= link_to 'New sample', new_analysis_simulation_sample_path(@simulation) %></p>

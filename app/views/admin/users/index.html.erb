@@ -1,0 +1,20 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Admin Home', admin_root_path %> >  Users
+  </div>
+</div>
+
+<h3>Users</h3>
+
+<p><%= link_to 'New user', new_admin_user_path %></p>
+<p><%= will_paginate(@users) %></p>
+
+<table width="90%">
+  <tr>
+    <th>login</th><th>email</th><th>roles</th><th>password</th>
+  </tr>
+  <%= render :partial => 'user', :collection => @users %>
+</table>
+
+<p><%= will_paginate(@users) %></p>
+<p><%= link_to 'New user', new_admin_user_path %></p>

@@ -1,0 +1,25 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> >  Simulations
+  </div>
+</div>
+
+<h3>Simulations</h3>
+
+<p><%= link_to 'New simulation', new_analysis_simulation_path %></p>
+<p><%= will_paginate(@simulations) %></p>
+
+<table width="90%">
+<tr>
+  <th>State</th><th>Profile</th>
+</tr>
+<% @simulations.each do |simulation| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to "#{simulation.state}", [:analysis, simulation] %></td>
+    <td><%= link_to "#{simulation.profile.name}", [:analysis, simulation.profile] %></td>    
+    <td><%= link_to 'Destroy', [:analysis, simulation], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<p><%= will_paginate(@simulations) %></p>
+<p><%= link_to 'New simulation', new_analysis_simulation_path %></p>

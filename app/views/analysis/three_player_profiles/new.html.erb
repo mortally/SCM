@@ -1,0 +1,32 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to '3 Player Profiles', analysis_three_player_profiles_path %> > Create 3 Player Profile
+  </div>
+</div>
+
+<h3>New 3 player profile</h3>
+
+<% form_for([:analysis,@three_player_profile]) do |f| %>
+  <%= f.error_messages %>
+
+  <table>
+    <tr>
+      <td><%= f.label :server_id, "Server" %></td>
+      <td><%= f.select :server_id, @server_options %></td>
+    </tr>
+    <% for i in 1..3 %>
+    <tr>
+      <td><label for="three_player_profile_strategies">Strategy</label></td>
+      <td><select id="three_player_profile_strategies" name="three_player_profile[strategies][]">
+      <% @strategy_options.each do |option| %>
+        <option value="<%= option[1] %>"><%=h option[0] %></option>
+      <% end %>
+      </select></td>
+    </tr>
+    <% end %>
+  </table>
+  
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>

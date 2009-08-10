@@ -1,0 +1,26 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> >  3 Player Games
+  </div>
+</div>
+
+<h3>3 Player Games</h3>
+
+<p><%= will_paginate(@three_player_games) %></p>
+<table width="90%">
+<tr>
+  <th>Name</th>
+  <th>Description</th>
+</tr>
+
+<% @three_player_games.each do |three_player_game| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to three_player_game.name, [:analysis, three_player_game] %></td>
+    <td><%= link_to three_player_game.description, [:analysis, three_player_game] %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= will_paginate(@three_player_games) %></p>
+
+<p><%= link_to 'New three player game', new_analysis_three_player_game_path %></p>

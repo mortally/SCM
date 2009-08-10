@@ -1,0 +1,23 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Admin Home', admin_root_path %> > <%= link_to 'Accounts', admin_accounts_path %> > Show Account
+  </div>
+</div>
+
+<h3>Account Information</h3>
+<table>
+  <tr>
+    <th>Username: </th>
+    <td><%=h @account.username %></td>
+  </tr>
+  <tr>
+    <th>Host: </th>
+    <td><%=h @account.host %></td>
+  </tr>
+  <tr>
+    <th>Max Concurrent Simulations: </th>
+    <td><%=h pluralize(@account.max_concurrent_simulations, "simulation") %></td>
+  </tr>
+</table>
+<p><%= link_to 'Edit account', edit_admin_account_path(@account) %> </p>
+

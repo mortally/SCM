@@ -1,0 +1,48 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to 'Simulations', analysis_simulations_path %> > Show Simulation
+  </div>
+</div>
+
+<h3>Simulation Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Account: </th>
+    <td><%=h @simulation.account.username %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Profile: </th>
+    <td><%= link_to h(@simulation.profile.name), [:analysis, @simulation.profile] %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Size: </th>
+    <td><%=h @simulation.size %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Job: </th>
+    <td><%=h @simulation.job %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>State: </th>
+    <td><%=h @simulation.state %></td>
+  </tr>
+</table>
+
+<h3>Samples</h3>
+
+<table width="90%">
+<tr>
+  <th></th><th>File</th>
+</tr>
+
+<% @simulation.samples.each do |sample| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to "Sample", [:analysis, @simulation, sample] %></td>
+    <td><%= link_to "Download file", sample.public_filename %></td>
+    <td><%= link_to 'Destroy', [:analysis, @simulation, sample], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= link_to 'Manage Samples', analysis_simulation_samples_path(@simulation) %> </p>
+<p><%= link_to 'New sample', new_analysis_simulation_sample_path(@simulation) %></p>

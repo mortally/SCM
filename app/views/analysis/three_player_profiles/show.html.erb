@@ -1,0 +1,71 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to '3 Player Profile', analysis_three_player_profiles_path %> > Show 3 Player Profile
+  </div>
+</div>
+
+<h3>Profile Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Server: </th>
+    <td><%=link_to h(@three_player_profile.server.name), [:analysis,@three_player_profile.server] %></td>
+  </tr>
+  <% ThreePlayerProfile::PLAYERS.each do |player| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Strategy <%=h player %>: </th>
+    <td><%=link_to h(@three_player_profile.strategy(player).name), [:analysis, @three_player_profile.strategy(player)] %></td>
+  </tr>
+  <% end %>
+</table>
+
+<h3>New simulation</h3>
+
+<% form_for([:analysis,@simulation]) do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :profile_id %>
+  <table>
+    <tr>
+      <td><%= f.label :account %></td>
+      <td><%= f.select :account_id, @account_options %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :size %></td>
+      <td><%= f.text_field :size %></td>
+    </tr>
+  </table>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<h3>Sample Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Total </th>
+    <td><%= pluralize(@total_samples, "sample") %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Clean </th>
+    <td><%= pluralize(@clean_samples, "sample") %></td>
+  </tr>  
+</table>
+
+<h3>Simulation Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Queued </th>
+    <td><%= pluralize(@queued_simulations, "simulation") %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Running </th>
+    <td><%= pluralize(@running_simulations, "simulation") %></td>
+  </tr>  
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Complete </th>
+    <td><%= pluralize(@complete_simulations, "simulation") %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Failed </th>
+    <td><%= pluralize(@failed_simulations, "simulation") %></td>
+  </tr>
+</table>

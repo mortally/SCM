@@ -1,0 +1,27 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to 'Servers', analysis_servers_path %> > Show Server: <%=h @server.name %>
+  </div>
+</div>
+
+<h3>Server Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Name: </th>
+    <td><%=h @server.name %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Version: </th>
+    <td><%=h @server.version %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Server Index: </th>
+    <td><%=h @server.server_index %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Description: </th>
+    <td><%=h @server.description %></td>
+  </tr>
+</table>
+<p><%= link_to 'Edit server', edit_analysis_server_path(@server) %> </p>
+

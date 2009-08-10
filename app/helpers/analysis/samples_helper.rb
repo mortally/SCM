@@ -1,0 +1,2 @@
+module Analysis::SamplesHelper
+end

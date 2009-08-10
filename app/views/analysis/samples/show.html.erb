@@ -1,0 +1,41 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to 'Simulations', analysis_simulations_path %> > <%= link_to 'Simulation', [:analysis, @simulation] %> > Sample
+  </div>
+</div>
+
+<h3>Sample Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Profile: </th>
+    <td><%= link_to @sample.profile.name, [:analysis, @sample.profile] if @sample.profile %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Simulation: </th>
+    <td><%= link_to "Simulation", [:analysis, @sample.simulation] %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>File: </th>
+    <td><%= link_to 'Download file', @sample.public_filename %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Clean: </th>
+    <td><%=h @sample.clean %></td>
+  </tr>
+</table>
+
+<p><%= link_to 'Edit sample', edit_analysis_simulation_sample_path(@simulation, @sample) %> </p>
+
+<p><%= link_to 'Process scores', process_scores_analysis_simulation_sample_path(@simulation, @sample) %> </p>
+
+<% if @sample.three_player_payoff %>
+<h3>Payoff Information</h3>
+<table width="90%">
+  <% ThreePlayerProfile::PLAYERS.each do |player| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Player <%=h player %>: </th>
+    <td style="text-align: right"><%= number_to_currency(@sample.three_player_payoff.payoff_to_player(player)) %></td>
+  </tr>
+  <% end %>
+</table>
+<% end %>

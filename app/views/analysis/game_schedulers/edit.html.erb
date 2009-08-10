@@ -1,0 +1,26 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to 'Game Schedulers', analysis_game_schedulers_path %> > <%= link_to "Game Scheduler", [:analysis, @game_scheduler] %> > Edit Game Scheduler
+  </div>
+</div>
+
+<h3>Edit game scheduler</h3>
+
+<% form_for([:analysis,@game_scheduler]) do |f| %>
+  <%= f.error_messages %>
+
+  <table>
+    <tr>
+      <td><%= f.label :active %></td>
+      <td><%= f.check_box :active %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :min_samples_per_profile %></td>
+      <td><%= f.text_field :min_samples_per_profile %></td>
+    </tr>
+  </table>
+  
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

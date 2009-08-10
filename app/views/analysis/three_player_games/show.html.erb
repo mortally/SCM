@@ -1,0 +1,72 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to 'Games', analysis_games_path %> > 3 Player Game: <%=h @three_player_game.name %>
+  </div>
+</div>
+
+<h3>Game Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Name: </th>
+    <td><%=h @three_player_game.name %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Server: </th>
+    <td><%=h @three_player_game.server.name %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Description: </th>
+    <td><%=h @three_player_game.description %></td>
+  </tr>
+</table>
+
+<p><%= link_to 'Edit game', edit_analysis_three_player_game_path(@three_player_game) %> </p>
+
+<h3>Game Data</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>EGAT XML Format: </th>
+    <td><%= link_to "Download", analysis_three_player_game_path(@three_player_game, :xml) %></td>
+  </tr>
+</table>
+
+<h3>Schedulers</h3>
+<table width="90%">
+  <tr><th>Active?</th><tr>
+<% @three_player_game.game_schedulers.each do |game_scheduler| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to "Show", [:analysis, game_scheduler] %></td>
+    <td><%=h game_scheduler.active %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= link_to 'Create a scheduler', new_analysis_game_scheduler_path %> </p>
+
+<h3>Stategies</h3>
+<table width="90%">
+  <tr><th>Name</th><tr>
+<% @three_player_game.strategies.each do |strategy| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to strategy.name, [:analysis, strategy] %></td>
+    <td><%= link_to 'Remove', analysis_game_strategy_path(@three_player_game, strategy), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+<% form_tag(analysis_game_strategies_path(@three_player_game)) do %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= select_tag :strategy_id, options_for_select(@strategy_options) %></td>
+    <td><%= submit_tag 'Add strategy' %></td>
+  </tr>
+<% end if @strategy_options.length > 0%>  
+</table>
+
+<h3>Profiles</h3>
+<table width="90%">
+  <tr><th>Name</th><th>Clean Samples</th></tr>
+<% @three_player_game.three_player_profiles.each do |three_player_profile| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to three_player_profile.name, [:analysis, three_player_profile] %></td>
+    <td><%= pluralize(three_player_profile.three_player_payoffs.count, "sample")%></td>
+  </tr>
+<% end %>
+</table>

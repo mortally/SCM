@@ -1,0 +1,48 @@
+<!-- main -->
+<div id="main" class="grid_8">
+		
+	<a name="TemplateInfo"></a>
+	<h2>Home</h2>
+	
+	<p>Welcome to the <strong>Computer Poker Analysis</strong> website.  Here you can manage analysis and retrieve game data.
+	</p>  
+	
+	<div class="clear">&nbsp;</div>
+  
+  <%= image_tag 'poker_cards.jpg', :style=>'border: none' %>
+  
+<!-- main ends -->
+</div>
+
+<!-- left-columns starts -->
+<div id="left-columns" class="grid_8">
+
+	<div class="grid_4 alpha">	
+		<div class="sidemenu">
+			<h3>Links</h3>
+			<ul>
+				<li><a href="http://aa.tradingagents.org">AA.TradingAgents.org<br /><span>The TAC Ad Auction game site</span></a></li>
+				<li><a href="http://tradingagents.org">TradingAgents.org<br /><span>Association for Trading Agent Research</span></a></li>
+			</ul>
+		</div>
+	
+		<h3>Schedulers</h3>
+		<p>Bluechip Poker Analysis currently has <%= pluralize(@active_scheduler_count, "active scheduler") %> out of <%= pluralize(@scheduler_count, "scheduler") %>.</p>
+	  		
+	  <h3>Simulations</h3>
+		<p>Bluechip Poker Analysis has <%= pluralize(@active_simulation_count, "active simulation") %> and <%= pluralize(@complete_simulation_count, "complete simulation") %>.</p>
+
+	  <h3>Samples</h3>
+		<p>Bluechip Poker Analysis has <%= pluralize(@sample_count, "sample") %> with <%= pluralize(@clean_sample_count, "clean sample") %>.</p>
+
+	</div>
+
+	<div class="grid_4 omega">
+    <!--
+	<script src="http://pipes.yahoo.com/js/listbadge.js">
+    {"pipe_id":"4lFfHnQO3hG3RJeudPQQIA","_btype":"list", "height" : "500px"}
+    </script>
+	</div>	
+	-->
+<!-- end left-columns -->
+</div>		

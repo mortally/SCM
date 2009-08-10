@@ -1,0 +1,26 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> >  Strategies
+  </div>
+</div>
+
+<h3>Strategies</h3>
+
+<p><%= will_paginate(@simulations) %></p>
+<table width="90%">
+<tr>
+  <th>Name</th><th>Server Index</th>
+</tr>
+
+<% @strategies.each do |strategy| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to strategy.name, [:analysis, strategy] %></td>
+    <td><%= link_to strategy.server_index, [:analysis, strategy] %></td>
+    <td><%= link_to 'Destroy', [:analysis, strategy], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= will_paginate(@simulations) %></p>
+
+<p><%= link_to 'New strategy', new_analysis_strategy_path %></p>

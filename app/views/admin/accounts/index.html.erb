@@ -1,0 +1,25 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Admin Home', admin_root_path %> >  Accounts
+  </div>
+</div>
+
+<h3>Accounts</h3>
+
+<table width="90%">
+  <tr>
+    <th>Username</th><th>Host</th><th></th>
+  </tr>
+
+<% @accounts.each do |account| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to account.username, [:admin, account] %></td>
+    <td><%= link_to account.host, [:admin, account] %></td>
+    <td><%= link_to 'Destroy', [:admin, account], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New account', new_admin_account_path %>

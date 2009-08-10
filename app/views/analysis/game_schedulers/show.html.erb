@@ -1,0 +1,23 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to 'Game Schedulers', analysis_game_schedulers_path %> > Show Game Scheduler
+  </div>
+</div>
+
+<h3>Game Scheduler Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Game: </th>
+    <td><%= link_to h(@game_scheduler.game.name), [:analysis, @game_scheduler.game] %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Active: </th>
+    <td><%=h @game_scheduler.active %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Min Samples Per Profile: </th>
+    <td><%=h @game_scheduler.min_samples_per_profile %></td>
+  </tr>
+</table>
+<p><%= link_to 'Edit game scheduler', edit_analysis_game_scheduler_path(@game_scheduler) %> </p>
+

@@ -1,0 +1,24 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> >  3 Player Profiles
+  </div>
+</div>
+
+<h3>3 Player profiles</h3>
+
+<p><%= will_paginate(@simulations) %></p>
+<table width="90%">
+<tr>
+  <th>Name</th>
+</tr>
+
+<% @three_player_profiles.each do |three_player_profile| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to three_player_profile.name, [:analysis, three_player_profile] %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= will_paginate(@simulations) %></p>
+
+<p><%= link_to 'New three player profile', new_analysis_three_player_profile_path %></p>

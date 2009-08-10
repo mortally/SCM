@@ -1,0 +1,29 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to 'Simulations', analysis_simulations_path %> > Create Simulation
+  </div>
+</div>
+
+<h3>New simulation</h3>
+
+<% form_for([:analysis,@simulation]) do |f| %>
+  <%= f.error_messages %>
+
+  <table>
+    <tr>
+      <td><%= f.label :account %></td>
+      <td><%= f.select :account_id, @account_options %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :profile %></td>
+      <td><%= f.select :profile_id, @profile_options %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :size %></td>
+      <td><%= f.text_field :size %></td>
+    </tr>
+  </table>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>

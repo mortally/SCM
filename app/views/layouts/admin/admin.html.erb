@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Home - Computer Poker Analysis</title>
+	<meta name="author" content="Lee Callender">
+	<meta name="description" content="Computer Poker Analysis site" />
+  <meta name="keywords" content="computer poker analysis" />
+  <meta name="robots" content="index, follow, noarchive" />
+  <meta name="googlebot" content="noarchive" />
+  
+	<%= stylesheet_link_tag('screen') %>
+	<%= javascript_include_tag(:defaults) %>
+	<%= javascript_include_tag('widgets/tooltip') %>
+</head>
+<body>
+  <!-- header starts-->
+	<div id="header-wrap"><div id="header" class="container_16">						
+		
+		<h1 id="logo-text"><%= link_to 'Computer Poker Analysis', root_path %></h1>		
+		<p id="intro">Game-theoretic analysis of Texas Hold 'Em...</p>				
+		
+		<%= tabnav :main %>	
+		
+		<%= navigation :main %>
+
+	<!-- header ends here -->
+	</div></div>
+	
+	<!-- content starts -->
+	<div id="content-outer"><div id="content-wrapper" class="container_16">
+	  <!-- main -->
+    <div id="main" class="grid_8">
+
+	    <%= yield %>
+    <!-- main ends -->
+    </div>
+
+	  
+	  <!-- left-columns starts -->
+    <div id="left-columns" class="grid_8">
+
+    	<div class="grid_4 alpha">
+
+    		<div class="sidemenu">	
+    			<h3>Admin Menu</h3>
+    			<ul>				
+    				<li><%= link_to 'Home', admin_root_path %></li>
+    				<li><%= link_to 'Accounts', admin_accounts_path %></li>    				
+    				<li><%= link_to 'Users', admin_users_path %></li>    				
+    			</ul>	
+    		</div>			
+    	</div>
+
+    	<div class="grid_4 omega">
+        <h3>Schedulers</h3>
+    		<p>Bluechip Poker Analysis currently has <%= pluralize(@active_scheduler_count, "active scheduler") %> out of <%= pluralize(@scheduler_count, "scheduler") %>.</p>
+
+    	  <h3>Simulations</h3>
+    		<p>Bluechip Poker Analysis has <%= pluralize(@active_simulation_count, "active simulation") %> and <%= pluralize(@complete_simulation_count, "complete simulation") %>.</p>
+
+    	  <h3>Samples</h3>
+    		<p>Bluechip Poker Analysis has <%= pluralize(@sample_count, "sample") %> with <%= pluralize(@clean_sample_count, "clean sample") %>.</p>
+        
+    	</div>	
+
+    <!-- end left-columns -->
+    </div>
+	<!-- contents end here -->	
+	</div></div>
+
+	<!-- footer starts here -->	
+	<div id="footer-wrapper" class="container_16">
+	
+		<div id="footer-content">
+		
+			<div class="grid_8">
+<!--		
+				<h3>Resource Links</h3>			
+				<p>
+				The Trading Agent Competition's Ad Auction game is the fourth game in the competition's history. <%= link_to 'Read more...', 'http://tradingagents.org' %>
+				</p>
+			
+				<ul class="footer-list">				
+					<li><a href="http://www.eecs.umich.edu/~prjordan"> Patrick R. Jordan - <span>Patrick R. Jordan's homepage</span></a></li>
+					<li><a href="http://tradingagents.org">TAC - <span>Association for Trading Agent Research</span></a></li>
+					<li><a href="http://aa.tradingagents.org">TAC/AA - <span>Trading Agent Competition's Ad Auction game site</span></a></li>
+				</ul>			
+						
+			</div>
+			
+			<div class="grid_8">					
+			
+				<h3>About</h3>			
+				<p>
+				<%= link_to image_tag('photo40.jpg', :alt=>'Patrick R. Jordan', :class=>"float-left") , "http://www.eecs.umich.edu/~prjordan" %>
+				The emergence of Internet advertising, speciﬁcally ad auctions, as a signiﬁcant commercial 
+        success over the past decade has led to increasing interest among academic researchers, manifest in a growing 
+        literature and a popular regular workshop on the topic. Analytical approaches have provided a strong theoretical 
+        foundation for understanding the strategic nature of the auctions, however potentially important aspects of the 
+        auctions are often abstracted in order to make the model feasible for analysis. TAC/AA is 
+        a new research competition created to analyze some of these overlooked aspects. Both the commercial importance 
+        and academic interest were major motivations of introducing the new TAC game. Given that bidding in keyword auctions 
+        (employing essentially the same mechanism as incorporated in the game) is a widespread current activity, the 
+        prospects for real-world implementation of ideas developed in the research competition are more direct than previous TAC games.</p>
+				<p>
+				This site is a front end controller for the empirical game-theoeretic analysis of the TAC Ad auctions game. <%= link_to 'Learn more about empirical game-theoretic analysis...', "http://www.eecs.umich.edu/~prjordan"%></p>					
+			</div>	
+		
+		</div>
+	-->
+		<div id="footer-bottom">
+	
+			<p class="bottom-left">			
+			&nbsp; &copy;2009 Strategic Reasoning &nbsp; &nbsp;
+			</p>	
+			
+			<p class="bottom-right" >
+				<%= link_to 'Home', root_path %> |
+				<a href="index.html">Sitemap</a> |
+				<a href="index.html">RSS Feed</a> 						
+			</p>
+	
+		</div>	
+			
+	</div>
+	<!-- footer ends here -->
+</body>
+</html>

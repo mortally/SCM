@@ -1,0 +1,29 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Admin Home', admin_root_path %> > <%= link_to 'Accounts', admin_accounts_path %> > Create Account
+  </div>
+</div>
+
+<h3>New account</h3>
+
+<% form_for([:admin,@account]) do |f| %>
+  <%= f.error_messages %>
+
+  <table>
+    <tr>
+      <td><%= f.label :username %></td>
+      <td><%= f.text_field :username %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :host %></td>
+      <td><%= f.text_field :host %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :max_concurrent_simulations %></td>
+      <td><%= f.text_field :max_concurrent_simulations %></td>
+    </tr>
+  </table>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>

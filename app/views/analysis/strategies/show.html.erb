@@ -1,0 +1,23 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to 'Strategies', analysis_strategies_path %> > Show Strategy: <%=h @strategy.name %>
+  </div>
+</div>
+
+<h3>Strategy Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">    
+    <th>Name: </th>
+    <td><%=h @strategy.name %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Server Index: </th>
+    <td><%=h @strategy.server_index %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Description: </th>
+    <td><%=h @strategy.description %></td>
+  </tr>
+</table>
+<p><%= link_to 'Edit strategy', edit_analysis_strategy_path(@strategy) %> </p>
+

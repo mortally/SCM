@@ -1,0 +1,28 @@
+<div class="breadcrumb">
+  <div class="bc">
+    <%= link_to 'Analysis Home', analysis_root_path %> >  Game Schedulers
+  </div>
+</div>
+
+<h3>Game Schedulers</h3>
+
+<p><%= link_to 'New game scheduler', new_analysis_game_scheduler_path %></p>
+<p><%= will_paginate(@game_schedulers) %></p>
+<table width="90%">
+<tr>
+  <th></th><th>Game</th><th>Active?</th>
+</tr>
+
+<% @game_schedulers.each do |game_scheduler| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to "Show", [:analysis, game_scheduler] %></td>
+    <td><%= link_to game_scheduler.game.name, [:analysis, game_scheduler] %></td>
+    <td><%= link_to h(game_scheduler.active), [:analysis, game_scheduler] %></td>
+    <td><%= link_to 'Destroy', [:analysis, game_scheduler], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<p><%= will_paginate(@game_schedulers) %></p>
+
+<p><%= link_to 'New game scheduler', new_analysis_game_scheduler_path %></p>
