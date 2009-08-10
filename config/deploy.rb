@@ -1,5 +1,5 @@
 set :application, "computer-poker-analysis"
-set :repository,  "ssh://deepmaize@aifa.eecs.umich.edu:~/repos/notetaker.git"
+set :repository,  "ssh://deepmaize@aifa.eecs.umich.edu:~/repos/computer-poker-analysis.git"
 set :domain, "aifa.eecs.umich.edu"
 
 set :deploy_to, "/home/deepmaize/deploy"
