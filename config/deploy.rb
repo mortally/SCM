@@ -2,6 +2,7 @@ set :application, "computer-poker-analysis"
 set :repository,  "ssh://deepmaize@aifa.eecs.umich.edu:~/repos/notetaker.git"
 set :domain, "aifa.eecs.umich.edu"
 
+set :deploy_to, "/home/deepmaize/deploy"
 set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
 set :scm, :git
 set :deploy_via, :remote_cache
