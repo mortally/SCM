@@ -11,7 +11,7 @@ ssh_options[:paranoid] = false
 
 set :user, 'deepmaize'
 set :runner, 'deepmaize'
-set :use_sudo, false
+set :use_sudo, true
 
 role :app, domain
 role :web, domain
