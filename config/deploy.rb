@@ -51,5 +51,22 @@ namespace :deploy do
   task :stop, :roles => :app do
     deploy.mongrel.stop
   end
+end
 
+namespace :backgroundrb do
+  desc "Stop the backgroundrb server"
+  task :stop , :roles => :app do
+    run "cd #{current_path} && ./script/backgroundrb stop -e production"
+  end
+
+  desc "Start the backgroundrb server"
+  task :start , :roles => :app do
+    run "cd #{current_path} && nohup ./script/backgroundrb start -e production  > /dev/null 2>&1"
+  end
+
+  desc "Start the backgroundrb server"
+  task :restart, :roles => :app do
+    backgroundrb.stop
+    backgroundrb.start
+  end
 end
