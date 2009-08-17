@@ -8,9 +8,8 @@ class Sample < ActiveRecord::Base
   #TODO:Change
   has_attachment :storage => :file_system, 
                  :max_size => 20.megabytes, 
-                 :content_type => ['application/gzip',
-                                   'application/x-gzip',
-                                   'application/gzipped']
+                 :content_type => ['application/xml',
+                                   'text/xml']
 
   validates_as_attachment                                                              
 end
