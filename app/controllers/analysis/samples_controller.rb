@@ -24,11 +24,11 @@ class Analysis::SamplesController < Analysis::AnalysisController
   
   def process_scores
     #TODO-FIX
-    #@sample = Sample.find(params[:id])
+    @sample = Sample.find(params[:id])
     
-    #MiddleMan.worker(:maintenance_worker).async_process_sample(:arg => params[:id])
+    MiddleMan.worker(:maintenance_worker).async_process_sample(:arg => params[:id])
     
-    #redirect_to([:analysis, @simulation, @sample])
+    redirect_to([:analysis, @simulation, @sample])
   end
   
   def new
