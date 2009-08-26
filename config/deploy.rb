@@ -24,6 +24,12 @@ task :update_config, :roles => [:app] do
 end
 after 'deploy:update_code', :update_config
 
+# moves over server config files
+task :update_sample_symlink, :roles => [:app] do
+  run "ln -s #{shared_path}/samples #{release_path}/public/samples"
+end
+after 'deploy:update_code', :update_sample_symlink
+
 # mongrel-based overrides of the default tasks
 
 namespace :deploy do
