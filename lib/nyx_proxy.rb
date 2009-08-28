@@ -1,7 +1,7 @@
 require 'net/ssh'
 
 class NyxProxy
-  BATCH_CMD = "/home/wellmangroup/computer-poker-analysis/current/script/batch"
+  BATCH_CMD = "ruby /home/wellmangroup/computer-poker-analysis/current/script/batch"
   QSTAT_CMD = "/usr/local/torque/bin/qstat"
   def initialize
   end
