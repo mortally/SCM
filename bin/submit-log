@@ -1,0 +1,12 @@
+#!/bin/bash
+
+HOST=$1
+PORT=$2
+USERNAME=$3
+PASSWORD=$4
+SIM_ID=$5
+FILE=$6
+
+curl -F "sample[uploaded_data]=@${FILE};type=application/xml" \
+	 -u ${USERNAME}:${PASSWORD} \
+     http://${HOST}:${PORT}/analysis/simulations/${SIM_ID}/samples
