@@ -9,6 +9,7 @@ class MaintenanceWorker < BackgrounDRb::MetaWorker
   end
   
   def process_sample(sample_id)
+    sleep 1
     thread_pool.defer(:process_sample_task,sample_id)
   end
   
