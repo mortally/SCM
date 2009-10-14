@@ -34,7 +34,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-  config.active_record.observers = :user_observer
+  config.active_record.observers = :user_observer, :sample_observer
   
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
