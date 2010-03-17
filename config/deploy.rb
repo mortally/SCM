@@ -2,21 +2,21 @@ set :application, "analysis"
 set :repository,  "git@github.com:DoctorTeeth/SCM.git"
 set :domain, "manx.eecs.umich.edu"
 
-set :deploy_to, "/home/deepmaize/deploy"
-set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
+set :deploy_to, "/home/auggie"
+#set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
 set :scm, :git
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
 
-ssh_options[:paranoid] = false
+#ssh_options[:paranoid] = false
 
 set :user, 'auggie'
-set :runner, 'auggie'
-set :use_sudo, true
+#set :runner, 'auggie'
+set :use_sudo, false
 
 role :app, domain
 role :web, domain
 role :db, domain, :primary => true
-
+=begin
 # moves over server config files
 task :update_config, :roles => [:app] do
   run "cp -Rf #{shared_path}/config/* #{release_path}/config/"
@@ -76,3 +76,4 @@ namespace :backgroundrb do
     backgroundrb.start
   end
 end
+=end
