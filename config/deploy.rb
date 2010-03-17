@@ -1,6 +1,6 @@
-set :application, "computer-poker-analysis"
-set :repository,  "ssh://deepmaize@aifa.eecs.umich.edu/Users/deepmaize/repos/computer-poker-analysis.git"
-set :domain, "aifa.eecs.umich.edu"
+set :application, "analysis"
+set :repository,  "git@github.com:DoctorTeeth/SCM.git"
+set :domain, "manx.eecs.umich.edu"
 
 set :deploy_to, "/home/deepmaize/deploy"
 set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
@@ -9,8 +9,8 @@ set :deploy_via, :remote_cache
 
 ssh_options[:paranoid] = false
 
-set :user, 'deepmaize'
-set :runner, 'deepmaize'
+set :user, 'auggie'
+set :runner, 'auggie'
 set :use_sudo, true
 
 role :app, domain
