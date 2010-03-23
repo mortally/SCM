@@ -9,7 +9,7 @@ set :scm, :git
 
 ssh_options[:paranoid] = false
 
-#default_run_options[:pty] = true
+default_run_options[:pty] = true
 
 
 set :user, 'auggie'
