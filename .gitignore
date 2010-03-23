@@ -1,4 +1,3 @@
-config/database.yml
 config/mongrel_cluster.yml
 tmp/*
 log/*
