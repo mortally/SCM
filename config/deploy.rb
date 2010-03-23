@@ -7,7 +7,10 @@ set :deploy_to, "/home/auggie"
 set :scm, :git
 #set :deploy_via, :remote_cache
 
-#ssh_options[:paranoid] = false
+ssh_options[:paranoid] = false
+
+#default_run_options[:pty] = true
+
 
 set :user, 'auggie'
 #set :runner, 'auggie'
