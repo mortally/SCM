@@ -23,7 +23,7 @@ set :use_sudo, false
 role :app, domain
 role :web, domain
 role :db, domain, :primary => true
-
+=begin
 # moves over server config files
 task :update_config, :roles => [:app] do
   run "cp -Rf #{shared_path}/config/* #{release_path}/config/"
@@ -38,7 +38,7 @@ end
 after 'deploy:update_code', :update_sample_symlink
 
 # mongrel-based overrides of the default tasks
-
+=end
 namespace :deploy do
   namespace :mongrel do
     [ :stop, :start, :restart ].each do |t|
@@ -65,7 +65,7 @@ namespace :deploy do
     deploy.mongrel.stop
   end
 end
-
+=begin
 namespace :backgroundrb do
   desc "Stop the backgroundrb server"
   task :stop , :roles => :app do
@@ -83,3 +83,4 @@ namespace :backgroundrb do
     backgroundrb.start
   end
 end
+=end
