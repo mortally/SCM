@@ -16,9 +16,9 @@ set :user, 'auggie'
 #set :runner, 'auggie'
 set :use_sudo, false
 
-#deploy.task :restart, :roles => :app do
-#  run "touch #{current_path}/tmp/restart.txt"
-#end
+deploy.task :restart, :roles => :app do
+  run "touch #{current_path}/tmp/restart.txt"
+end
 
 role :app, domain
 role :web, domain
