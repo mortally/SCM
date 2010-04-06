@@ -38,7 +38,7 @@ end
 after 'deploy:update_code', :update_sample_symlink
 
 # mongrel-based overrides of the default tasks
-=end
+
 namespace :deploy do
   namespace :mongrel do
     [ :stop, :start, :restart ].each do |t|
@@ -65,7 +65,7 @@ namespace :deploy do
     deploy.mongrel.stop
   end
 end
-
+=end
 namespace :backgroundrb do
   desc "Stop the backgroundrb server"
   task :stop , :roles => :app do
