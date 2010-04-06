@@ -3,7 +3,7 @@ set :repository,  "git@github.com:DoctorTeeth/SCM"
 set :domain, "manx.eecs.umich.edu"
 
 set :deploy_to, "/home/auggie/newguy"
-#set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
+set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
 set :scm, :git
 #set :deploy_via, :remote_cache
 
@@ -16,14 +16,14 @@ set :user, 'auggie'
 #set :runner, 'auggie'
 set :use_sudo, false
 
-deploy.task :restart, :roles => :app do
-  run "touch #{current_path}/tmp/restart.txt"
-end
+#deploy.task :restart, :roles => :app do
+#  run "touch #{current_path}/tmp/restart.txt"
+#end
 
 role :app, domain
 role :web, domain
 role :db, domain, :primary => true
-=begin
+
 # moves over server config files
 task :update_config, :roles => [:app] do
   run "cp -Rf #{shared_path}/config/* #{release_path}/config/"
@@ -65,7 +65,7 @@ namespace :deploy do
     deploy.mongrel.stop
   end
 end
-=end
+
 namespace :backgroundrb do
   desc "Stop the backgroundrb server"
   task :stop , :roles => :app do
