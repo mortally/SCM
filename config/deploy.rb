@@ -65,7 +65,7 @@ namespace :deploy do
     deploy.mongrel.stop
   end
 end
-=begin
+
 namespace :backgroundrb do
   desc "Stop the backgroundrb server"
   task :stop , :roles => :app do
@@ -83,4 +83,3 @@ namespace :backgroundrb do
     backgroundrb.start
   end
 end
-=end
