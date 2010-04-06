@@ -23,7 +23,7 @@ end
 role :app, domain
 role :web, domain
 role :db, domain, :primary => true
-=begin
+
 # moves over server config files
 task :update_config, :roles => [:app] do
   run "cp -Rf #{shared_path}/config/* #{release_path}/config/"
@@ -83,4 +83,3 @@ namespace :backgroundrb do
     backgroundrb.start
   end
 end
-=end
