@@ -3,7 +3,7 @@ set :repository,  "git@github.com:DoctorTeeth/SCM"
 set :domain, "manx.eecs.umich.edu"
 
 set :deploy_to, "/home/auggie/newguy"
-set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
+#set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
 set :scm, :git
 #set :deploy_via, :remote_cache
 
