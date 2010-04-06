@@ -23,7 +23,7 @@ end
 role :app, domain
 role :web, domain
 role :db, domain, :primary => true
-
+=begin
 # moves over server config files
 task :update_config, :roles => [:app] do
   run "cp -Rf #{shared_path}/config/* #{release_path}/config/"
@@ -65,7 +65,7 @@ namespace :deploy do
     deploy.mongrel.stop
   end
 end
-
+=end
 namespace :backgroundrb do
   desc "Stop the backgroundrb server"
   task :stop , :roles => :app do
