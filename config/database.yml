@@ -2,9 +2,8 @@
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 development:
   adapter: mysql
-  database: poker_analysis_development
+  database: scm_analysis_development
   username: root
-  password: applegoat543
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
