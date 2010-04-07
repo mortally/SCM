@@ -23,5 +23,5 @@ production:
   database: scm_analysis_production
   username: augie
   password: augie@03172010
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
   
