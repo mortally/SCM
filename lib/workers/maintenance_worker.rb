@@ -3,9 +3,15 @@ class MaintenanceWorker < BackgrounDRb::MetaWorker
   pool_size 10
   
   def create(args = nil)
+    logger.info "maintenence_worker started"
+    #add_periodic_timer(3.minutes) { maintain_simulations }
+    #add_periodic_timer(1.minutes) { queue_simulations }    
+    #add_periodic_timer(1.minutes) { process_schedulers }
+    
+    
     add_periodic_timer(3.minutes) { maintain_simulations }
-    add_periodic_timer(1.minutes) { queue_simulations }    
-    add_periodic_timer(1.minutes) { process_schedulers }
+    add_periodic_timer(10.seconds) { queue_simulations }    
+    add_periodic_timer(10.seconds) { process_schedulers }
   end
   
   def process_sample(sample_id)
@@ -31,6 +37,7 @@ class MaintenanceWorker < BackgrounDRb::MetaWorker
   
   def maintain_simulations
     begin
+      logger.info "maintain_simulations"
       proxy = NyxProxy.new
       proxy.check_active_simulations
     rescue => e
@@ -40,6 +47,8 @@ class MaintenanceWorker < BackgrounDRb::MetaWorker
   
   def queue_simulations
     begin
+      puts "queue_simulations"
+      logger.info "queue_simulations"
       proxy = NyxProxy.new
       proxy.queue_pending_simulations
     rescue => e
@@ -49,6 +58,7 @@ class MaintenanceWorker < BackgrounDRb::MetaWorker
   
   def process_schedulers
     begin
+      logger.info "process_schedulers"
       GameScheduler.active.each do |game_scheduler|
         game_scheduler.schedule
       end

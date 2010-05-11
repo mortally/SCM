@@ -1,8 +1,8 @@
 set :application, "analysis"
-set :repository,  "git@github.com:DoctorTeeth/SCM"
+set :repository,  "git@github.com:mortally/SCM"
 set :domain, "manx.eecs.umich.edu"
 
-set :deploy_to, "/home/auggie/newguy"
+set :deploy_to, "/home/dong/Work/SCM"
 #set :mongrel_conf, "#{current_path}/config/mongrel_cluster.yml"
 set :scm, :git
 #set :deploy_via, :remote_cache
@@ -12,7 +12,7 @@ ssh_options[:paranoid] = false
 default_run_options[:pty] = true
 
 
-set :user, 'auggie'
+set :user, 'dong'
 #set :runner, 'auggie'
 set :use_sudo, false
 
@@ -82,4 +82,4 @@ namespace :backgroundrb do
     backgroundrb.stop
     backgroundrb.start
   end
-end
+end         

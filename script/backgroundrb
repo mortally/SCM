@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+ENV['PATH'] = "#{ENV['PATH']}:/var/lib/gems/1.8/bin/" # packet_worker_runner
 RAILS_HOME = File.expand_path(File.join(File.dirname(__FILE__),".."))
 BDRB_HOME = File.join(RAILS_HOME,"vendor","plugins","backgroundrb")
 WORKER_ROOT = File.join(RAILS_HOME,"lib","workers")

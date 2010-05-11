@@ -1,7 +1,7 @@
 class AddServerIndexToServers < ActiveRecord::Migration
   def self.up
     change_table :servers do |t|
-      t.string :server_index, :null=>false
+      t.string :server_index, :null=>true # false originally
     end
   end
 
