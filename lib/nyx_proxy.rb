@@ -2,7 +2,7 @@ require 'net/ssh'
 
 class NyxProxy
 #  BATCH_CMD = "ruby /home/wellmangroup/computer-poker-analysis/current/script/batch"
-  BATCH_CMD = "ruby /home/dyoon/SCM/SCM-analysis/script/batch"
+  BATCH_CMD = "ruby /home/dyoon/work/SCM_test/script/batch"
   QSTAT_CMD = "/usr/local/torque/bin/qstat"
   def initialize
   end
@@ -11,9 +11,9 @@ class NyxProxy
     
     account = simulation.account
     puts "submit_simulatin #{simulation} #{account.username}"
-    Net::SSH.start(account.host, account.username, :password => "yoon1018") do |ssh|
-      #simulation.logger.info ssh.exec!("#{BATCH_CMD} #{simulation.id}")
-      puts "#{BATCH_CMD} #{simulation.id}"
+    Net::SSH.start(account.host, account.username) do |ssh|
+      simulation.logger.info ssh.exec!("#{BATCH_CMD} #{simulation.id}")
+      #puts "#{BATCH_CMD} #{simulation.id}"
       puts ssh.exec!("#{BATCH_CMD} #{simulation.id}")
     end
     

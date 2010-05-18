@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(:version => 20090805182615) do
     t.string   "version",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "server_index", :null => false
+    t.string   "server_index"
   end
 
   create_table "simulations", :force => true do |t|

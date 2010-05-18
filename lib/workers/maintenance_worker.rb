@@ -4,14 +4,14 @@ class MaintenanceWorker < BackgrounDRb::MetaWorker
   
   def create(args = nil)
     logger.info "maintenence_worker started"
-    #add_periodic_timer(3.minutes) { maintain_simulations }
-    #add_periodic_timer(1.minutes) { queue_simulations }    
-    #add_periodic_timer(1.minutes) { process_schedulers }
-    
-    
     add_periodic_timer(3.minutes) { maintain_simulations }
-    add_periodic_timer(10.seconds) { queue_simulations }    
-    add_periodic_timer(10.seconds) { process_schedulers }
+    add_periodic_timer(1.minutes) { queue_simulations }    
+    add_periodic_timer(1.minutes) { process_schedulers }
+    
+    
+#    add_periodic_timer(3.minutes) { maintain_simulations }
+#    add_periodic_timer(10.seconds) { queue_simulations }    
+#    add_periodic_timer(10.seconds) { process_schedulers }
   end
   
   def process_sample(sample_id)
