@@ -9,7 +9,10 @@ class Sample < ActiveRecord::Base
   has_attachment :storage => :file_system, 
                  :max_size => 20.megabytes, 
                  :content_type => ['application/xml',
-                                   'text/xml']
+                                   'text/xml', 
+                                   'application/x-gzip',
+                                   'application/gzip',
+                                   'application/gzipped']
 
   validates_as_attachment                                                              
 end

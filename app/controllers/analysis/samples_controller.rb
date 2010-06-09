@@ -26,7 +26,8 @@ class Analysis::SamplesController < Analysis::AnalysisController
     #TODO-FIX
     @sample = Sample.find(params[:id])
     
-    MiddleMan.worker(:maintenance_worker).async_process_sample(:arg => params[:id])
+    #MiddleMan.worker(:maintenance_worker).async_process_sample(:arg => params[:id])
+    MiddleMan.worker(:maintenance_worker).enq_process_sample(:arg => params[:id], :job_key=>"process-sample-#{params[:id]}")
     
     redirect_to([:analysis, @simulation, @sample])
   end

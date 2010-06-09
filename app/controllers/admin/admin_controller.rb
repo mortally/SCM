@@ -7,7 +7,8 @@ class Admin::AdminController < ApplicationController
   protected
   
   def get_status    
-    @clean_sample_count = ThreePlayerPayoff.count
+    #@clean_sample_count = ThreePlayerPayoff.count
+    @clean_sample_count = Sample.find_all_by_clean(true).count
     @sample_count = Sample.count
     @active_simulation_count = Simulation.active.count
     @complete_simulation_count = Simulation.complete.count

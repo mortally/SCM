@@ -26,7 +26,7 @@ class GameScheduler < ActiveRecord::Base
   def find_account
     account = nil
     #Account.all(:order=> 'RAND()').each do |a|
-    Account.all.each do |a| # SQLite3 does not support RAND() op.
+    Account.all.shuffle.each do |a| # SQLite3 does not support RAND() op.
       if a.schedulable?
         account = a
         break

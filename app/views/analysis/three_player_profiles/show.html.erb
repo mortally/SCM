@@ -38,6 +38,23 @@
   </p>
 <% end %>
 
+<h3>Payoff Information</h3>
+<table width="90%">
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Strategy</th>
+    <th>Count</th>
+    <th>Payoff</th>
+  </tr>
+  
+  <% @three_player_profile.strategies.uniq.each do |strategy| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <td><%= link_to h(strategy.name), [:analysis, strategy] %></td>  
+    <td><%= @three_player_profile.strategy_count(strategy) %></td>  
+    <td><%= @three_player_profile.payoff(strategy) %></td>  
+  </tr>
+  <% end %>
+</table>
+
 <h3>Sample Information</h3>
 <table width="90%">
   <tr class="<%= cycle('','altrow') %>">
