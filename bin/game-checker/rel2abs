@@ -1,0 +1,6 @@
+#!/usr/bin/perl
+
+require File::Spec;
+$abs_path = File::Spec->rel2abs( $ARGV[0] ) ;
+print "$abs_path\n";
+

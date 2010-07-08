@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# the game to process
+game=`./rel2abs $1`
+cleandir=`./rel2abs $2`
+baddir=`./rel2abs $3`
+
+# run the check
+`./checkgame.pl $game`
+
+# get the return value
+rv=$?
+
+if [ "$rv" = "0" ]; then
+  echo $game is clean 
+  ln -s $game $cleandir/
+else
+  echo $game is bad
+  ln -s $game $baddir/   
+fi

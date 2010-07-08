@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# the game to process
+GAME_DIRECTORY=$1
+CLEAN_DIR=$2
+BAD_DIR=$3
+
+mkdir $CLEAN_DIR
+mkdir $BAD_DIR
+
+FILES=`ls -1 $GAME_DIRECTORY|grep slg.gz`
+echo $FILES
+
+for FILE in $FILES
+do
+  ./game-cleaner $GAME_DIRECTORY/$FILE $CLEAN_DIR $BAD_DIR
+  echo $GAME_DIRECTORY/$FILE
+done
