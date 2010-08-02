@@ -1,3 +1,4 @@
+
 <div class="breadcrumb">
   <div class="bc">
     <%= link_to 'Analysis Home', analysis_root_path %> > <%= link_to 'Game Schedulers', analysis_game_schedulers_path %> > Create Game Scheduler
@@ -8,11 +9,14 @@
 
 <% form_for([:analysis,@game_scheduler]) do |f| %>
   <%= f.error_messages %>
-
+	<%= javascript_include_tag 'prototype' %>
   <table>
     <tr>
       <td><%= f.label :game_id, "Game" %></td>
-      <td><%= f.select :game_id, @game_options %></td>
+      <td>
+	  	<%= f.collection_select :game_id, @games, :id, :name, {:onChange=>"#{remote_function(:url=>{:action=>'update_profiles', :controller=>'analysis/game_schedulers'}, :with=>"'game_id='+value")}"} %> 
+  	
+      </td>
     </tr>
     <tr>
       <td><%= f.label :active %></td>
@@ -21,6 +25,20 @@
     <tr>
       <td><%= f.label :min_samples_per_profile %></td>
       <td><%= f.text_field :min_samples_per_profile %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :scheduler_type %></td>
+      <td><%= f.radio_button :scheduler_type, "All", option={:checked=>false, :onclick => "profile_select.hide()"}%> <%= f.label :type, "All" %>
+	  <%= f.radio_button :scheduler_type, "Deviation", option={:checked=>false, :onclick => "profile_select.show()"} %> <%= f.label :type, "Deviation" %> 
+	  <%= f.radio_button :scheduler_type, "Single", option={:checked=>false, :onclick => "profile_select.show()"} %> <%= f.label :type, "Single" %></td>
+    </tr>
+    <tr id="profile_select">
+      <td><%= f.label :profile_id %></td>
+      <td>
+				<div id="profiles">
+					<%= render :partial => "profiles", :object => @profiles %>
+				</div>
+      </td>
     </tr>
   </table>
   <p>

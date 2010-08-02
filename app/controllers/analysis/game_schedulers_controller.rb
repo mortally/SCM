@@ -1,8 +1,21 @@
 class Analysis::GameSchedulersController < Analysis::AnalysisController
   
+  def update_profiles
+ 	#	aGame = Game.find(params[:game_id])
+ 		logger.info "asdfsfsaf"
+ 		print "sadfasdfsadF"
+ 		render 'game/1/show'
+	 	aGame = Game.find(2)  
+    profiless = aGame.profiles
+
+    render :update do |page|
+    	page.replace_html 'profiles', :partial => 'profiles', :object => profiless
+    end
+  end
+  
   def index
     @game_schedulers = GameScheduler.paginate :per_page => 15, :page => (params[:page] || 1)
-
+	
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @game_schedulers }
@@ -22,7 +35,9 @@ class Analysis::GameSchedulersController < Analysis::AnalysisController
 
   def new
     @game_scheduler = GameScheduler.new
+    @profiles = ThreePlayerProfile.find(:all)
     @game_options = Game.all.collect {|s| [s.name, s.id]}
+    @games = Game.find(:all)
     
     respond_to do |format|
       format.html # new.html.erb

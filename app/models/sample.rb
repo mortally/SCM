@@ -2,6 +2,7 @@ class Sample < ActiveRecord::Base
   belongs_to :simulation
   belongs_to :profile, :class_name=>'ThreePlayerProfile'
   has_one :three_player_payoff, :dependent=>:destroy
+  has_one :three_player_adjusted_payoff, :dependent=>:destroy
   
   named_scope :clean, :conditions=>{:clean=>true}
   

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090805182615) do
+ActiveRecord::Schema.define(:version => 20100728170035) do
 
   create_table "accounts", :force => true do |t|
     t.string   "username",                                  :null => false
@@ -125,6 +125,16 @@ ActiveRecord::Schema.define(:version => 20090805182615) do
 
   add_index "strategies", ["server_index"], :name => "index_strategies_on_server_index"
 
+  create_table "three_player_adjusted_payoffs", :force => true do |t|
+    t.integer  "sample_id"
+    t.float    "strategy_one_payoff",     :default => 0.0, :null => false
+    t.float    "strategy_two_payoff",     :default => 0.0, :null => false
+    t.float    "strategy_three_payoff",   :default => 0.0, :null => false
+    t.integer  "three_player_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "three_player_games_three_player_profiles", :id => false, :force => true do |t|
     t.integer "three_player_game_id"
     t.integer "three_player_profile_id"
@@ -141,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20090805182615) do
     t.integer  "sample_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "adjusted"
   end
 
   add_index "three_player_payoffs", ["sample_id"], :name => "index_three_player_payoffs_on_sample_id"

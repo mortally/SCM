@@ -17,6 +17,39 @@ class ThreePlayerGame < Game
     end
   end
   
+  def get_deviated_profiles(target_profile, distance)
+    
+    deviated_profiles = []
+    target_strategies = []
+    num_players = 3
+    
+    for i in 0..num_players-1
+      target_strategies << target_profile.strategies[i].id
+    end
+    
+    target_strategies.sort!
+    
+    three_player_profiles.each do |profile|
+      deviated_strategies = []   
+      for i in 0..num_players-1
+	deviated_strategies << profile.strategies[i].id
+      end
+      deviated_strategies.sort!
+      deviation_count = 0
+      for i in 0..num_players-1
+	if target_strategies[i] != deviated_strategies[i]
+	  deviation_count+=1
+	end
+      end
+      
+      if deviation_count == distance
+	deviated_profiles << profile
+      end
+      
+    end
+    return deviated_profiles
+  end
+  
   private
   
   def ensure_profiles

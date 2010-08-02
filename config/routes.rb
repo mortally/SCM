@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
     analysis.resources :strategies
     analysis.resources :servers
     analysis.resources :three_player_profiles
-    analysis.resources :game_schedulers
+    analysis.resources :game_schedulers, :collection => {:update_profiles=>:any}
     analysis.resources :games do |game|
       game.resources :strategies, :controller=>'game_strategies'
     end
@@ -67,9 +67,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
   map.root :controller => "home"
-
+	#map.route '/:controller/:action'
   # See how all your routes lay out with "rake routes"
-
+	map.connect 'game_schedulers/*', :controller=>"analysis/game_schedulers", :action=>"update_profiles"
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.

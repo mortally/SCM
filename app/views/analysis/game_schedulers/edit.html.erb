@@ -18,6 +18,18 @@
       <td><%= f.label :min_samples_per_profile %></td>
       <td><%= f.text_field :min_samples_per_profile %></td>
     </tr>
+    <tr>
+      <td><%= f.label :type %></td>
+      <td><%= f.radio_button :type, "All", option={:onclick => "profile_select.hide()"}%> <%= f.label :type, "All" %>
+	  <%= f.radio_button :type, "Deviation", option={:onclick => "profile_select.show()"} %> <%= f.label :type, "Deviation" %> 
+	  <%= f.radio_button :type, "Single", option={:onclick => "profile_select.show()"} %> <%= f.label :type, "Single" %></td>
+    </tr>
+    <tr id="profile_select">
+    
+      <td><%= f.label :profile %></td>
+      <td><%= collection_select(:game, :three_game_profile_id, ThreePlayerProfile.all, :id, :name) %></td>
+    
+    </tr>
   </table>
   
   <p>

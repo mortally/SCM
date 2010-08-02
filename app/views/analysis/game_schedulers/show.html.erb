@@ -18,6 +18,14 @@
     <th>Min Samples Per Profile: </th>
     <td><%=h @game_scheduler.min_samples_per_profile %></td>
   </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Type: </th>
+    <td><%=h @game_scheduler.scheduler_type %></td>
+  </tr>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Target Profile: </th>
+    <td><%=link_to h(ThreePlayerProfile.find(@game_scheduler.profile_id).name), [:analysis, ThreePlayerProfile.find(@game_scheduler.profile_id)] %></td>
+  </tr>
 </table>
 <p><%= link_to 'Edit game scheduler', edit_analysis_game_scheduler_path(@game_scheduler) %> </p>
 

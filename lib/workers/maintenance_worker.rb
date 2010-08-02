@@ -39,7 +39,13 @@ class MaintenanceWorker < BackgrounDRb::MetaWorker
 
       parser = ScoreParser.new
 
-      parser.calculate_payoff sample
+      clean = parser.calculate_payoff sample
+
+      if clean != false
+
+      	parser.calculate_adjusted_payoff sample
+
+      end
 
     rescue => e
       logger.error "Error processing sample: #{e.message}\n #{e.backtrace.join('n')}"

@@ -39,3 +39,15 @@
   <% end %>
 </table>
 <% end %>
+
+	<% if @sample.three_player_adjusted_payoff %>
+<h3>Adjusted Payoff Information</h3>
+<table width="90%">
+  <% ThreePlayerProfile::PLAYERS.each do |player| %>
+  <tr class="<%= cycle('','altrow') %>">
+    <th>Player <%=h player %>: </th>
+    <td style="text-align: right"><%= number_to_currency(@sample.three_player_adjusted_payoff.payoff_to_player(player)) %></td>
+  </tr>
+  <% end %>
+</table>
+<% end %>

@@ -18,6 +18,9 @@ class ThreePlayerProfile < ActiveRecord::Base
   has_many :samples, :foreign_key=>"profile_id"
   has_many :simulations, :foreign_key=>"profile_id"
   has_many :three_player_payoffs
+  has_many :three_player_adjusted_payoffs
+  
+  has_many :game_schedulers, :foreign_key=>"profile_id"
   
   named_scope :random, :order=>'RAND()'
   
@@ -63,6 +66,16 @@ class ThreePlayerProfile < ActiveRecord::Base
     end
           
     payoffs.sum / payoffs.length.to_f
+  end
+
+	def adjusted_payoff(strategy)
+    adjusted_payoffs = []
+    
+    three_player_adjusted_payoffs.each do |payoff|
+      adjusted_payoffs << payoff.payoff_to_strategy(strategy)
+    end
+          
+    adjusted_payoffs.sum / adjusted_payoffs.length.to_f
   end
   
   private

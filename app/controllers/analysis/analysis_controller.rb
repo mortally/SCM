@@ -3,7 +3,21 @@ class Analysis::AnalysisController < ApplicationController
   require_role 'analyst'
   
   before_filter :get_status, :except=>[:create, :update, :destroy]
-  
+
+		def update_profiles
+	 	#	aGame = Game.find(params[:game_id])
+	 		logger.info "asdfsfsaf"
+	 		print "sadfasdfsadF"
+	 		render 'game/1/show'
+		 	aGame = Game.find(2)  
+		  profiless = aGame.profiles
+
+		  render :update do |page|
+		  	page.replace_html 'profiles', :partial => 'profiles', :object => profiless
+		  end
+
+    end
+	
   protected
   
   def get_status    
