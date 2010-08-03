@@ -63,6 +63,16 @@ class MigrateToEgt < ActiveRecord::Migration
     
     add_index :profile_schedulers, :n_player_profile_id 
     
+    create_table :deviation_schedulers do |t|
+      t.references :n_player_profile
+      t.references :strategy
+      t.boolean :active, :null=>false, :default=>false
+      t.integer :min_samples_per_profile, :null=>false, :default=>0
+      t.timestamps
+    end
+    
+    add_index :deviation_schedulers, :n_player_profile_id 
+    add_index :deviation_schedulers, :strategy_id
     
 ##### Data migration #####
     

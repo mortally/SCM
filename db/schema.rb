@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100728170035) do
+ActiveRecord::Schema.define(:version => 20100728190752) do
 
   create_table "accounts", :force => true do |t|
     t.string   "username",                                  :null => false
@@ -39,6 +39,20 @@ ActiveRecord::Schema.define(:version => 20100728170035) do
     t.datetime "scheduled_at"
   end
 
+  create_table "feature_samples", :force => true do |t|
+    t.integer  "feature_id"
+    t.integer  "sample_id"
+    t.float    "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "features", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "game_schedulers", :force => true do |t|
     t.integer  "game_id"
     t.boolean  "active",                  :default => false, :null => false
@@ -57,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20100728170035) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "size",        :null => false
   end
 
   create_table "games_strategies", :id => false, :force => true do |t|
@@ -66,6 +81,52 @@ ActiveRecord::Schema.define(:version => 20100728170035) do
 
   add_index "games_strategies", ["game_id"], :name => "index_games_strategies_on_game_id"
   add_index "games_strategies", ["strategy_id"], :name => "index_games_strategies_on_strategy_id"
+
+  create_table "n_player_adjusted_payoffs", :force => true do |t|
+    t.integer  "n_player_profile_id"
+    t.integer  "sample_id"
+    t.integer  "n_player_payoff_id"
+    t.integer  "player_id",                            :null => false
+    t.float    "payoff",              :default => 0.0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "n_player_payoffs", :force => true do |t|
+    t.integer  "n_player_profile_id"
+    t.integer  "sample_id"
+    t.integer  "player_id"
+    t.float    "payoff",              :default => 0.0,   :null => false
+    t.boolean  "adjusted",            :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "n_player_profiles", :force => true do |t|
+    t.integer  "size",         :null => false
+    t.integer  "server_id"
+    t.string   "profile_hash"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "players", :force => true do |t|
+    t.integer  "strategy_id"
+    t.integer  "n_player_profile_id"
+    t.integer  "profile_index",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profile_schedulers", :force => true do |t|
+    t.integer  "n_player_profile_id"
+    t.boolean  "active",                  :default => false, :null => false
+    t.integer  "min_samples_per_profile", :default => 0,     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profile_schedulers", ["n_player_profile_id"], :name => "index_profile_schedulers_on_n_player_profile_id"
 
   create_table "roles", :force => true do |t|
     t.string "name"
@@ -124,47 +185,6 @@ ActiveRecord::Schema.define(:version => 20100728170035) do
   end
 
   add_index "strategies", ["server_index"], :name => "index_strategies_on_server_index"
-
-  create_table "three_player_adjusted_payoffs", :force => true do |t|
-    t.integer  "sample_id"
-    t.float    "strategy_one_payoff",     :default => 0.0, :null => false
-    t.float    "strategy_two_payoff",     :default => 0.0, :null => false
-    t.float    "strategy_three_payoff",   :default => 0.0, :null => false
-    t.integer  "three_player_profile_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "three_player_games_three_player_profiles", :id => false, :force => true do |t|
-    t.integer "three_player_game_id"
-    t.integer "three_player_profile_id"
-  end
-
-  add_index "three_player_games_three_player_profiles", ["three_player_game_id"], :name => "three_players_game_id"
-  add_index "three_player_games_three_player_profiles", ["three_player_profile_id"], :name => "three_players_profile_id"
-
-  create_table "three_player_payoffs", :force => true do |t|
-    t.integer  "three_player_profile_id"
-    t.float    "strategy_one_payoff",     :default => 0.0, :null => false
-    t.float    "strategy_two_payoff",     :default => 0.0, :null => false
-    t.float    "strategy_three_payoff",   :default => 0.0, :null => false
-    t.integer  "sample_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "adjusted"
-  end
-
-  add_index "three_player_payoffs", ["sample_id"], :name => "index_three_player_payoffs_on_sample_id"
-  add_index "three_player_payoffs", ["three_player_profile_id"], :name => "index_three_player_payoffs_on_three_player_profile_id"
-
-  create_table "three_player_profiles", :force => true do |t|
-    t.integer  "server_id"
-    t.integer  "strategy_one_id"
-    t.integer  "strategy_two_id"
-    t.integer  "strategy_three_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
