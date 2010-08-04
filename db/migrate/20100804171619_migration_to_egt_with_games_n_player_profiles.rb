@@ -1,5 +1,14 @@
 class MigrationToEgtWithGamesNPlayerProfiles < ActiveRecord::Migration
   def self.up
+  	
+  	create_table :games_n_player_profiles, :id=>false do |t|
+      t.references :game
+      t.references :n_player_profile
+    end
+    
+    add_index :games_n_player_profiles, :game_id
+    add_index :games_n_player_profiles, :n_player_profile_id
+  	
   	# Migration for Games_N_Player_Profiles
     ThreePlayerGame.all.each do |game|
     	tp_profiles = game.three_player_profiles
